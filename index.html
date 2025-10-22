@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BlissFull Children's Clinic</title>
+  <title>Blissful Kids Clinic</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -16,16 +16,36 @@
       padding-top: 80px;
     }
 
-    /* Enhanced background with better overlay */
+    /* Base body styling */
     body {
-      background-image: url("bg-doctor.png");
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+      background-color: #0f172a;
+    }
+
+    /* Background layers */
+    .bg-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
-      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      z-index: 0;
+      pointer-events: none;
     }
 
+    .bg-layer.active {
+      opacity: 1;
+    }
+
+    /* Overlay for readability */
     body::before {
       content: "";
       position: fixed;
@@ -33,25 +53,34 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(15, 23, 42, 0.92);
-      z-index: -1;
+      background: rgba(15, 23, 42, 0.6);
+      z-index: 1;
+      pointer-events: none;
     }
   </style>
 </head>
-<body class="bg-slate-900">
+<body>
+
+  <!-- Background layers for parallax -->
+  <div id="bg1" class="bg-layer active" style="background-image: url('bg_1.jpg');"></div>
+  <div id="bg2" class="bg-layer" style="background-image: url('bg_2.jpg');"></div>
+  <div id="bg3" class="bg-layer" style="background-image: url('bg_3.jpg');"></div>
+  <div id="bg4" class="bg-layer" style="background-image: url('bg_4.jpg');"></div>
 
   <!-- Nav bar -->
-  <nav class="bg-slate-950 fixed w-full z-20 top-0 border-b border-slate-800">
+  <nav class="bg-slate-950 fixed w-full z-50 top-0 border-b border-slate-800">
     <div class="max-w-7xl mx-auto px-6 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center space-x-3">
-          <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center overflow-hidden">
+            <img src="logo.jpg" alt="Blissful Kids Clinic Logo" class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <svg class="w-6 h-6 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
           </div>
-          <span class="text-2xl font-semibold text-white">BlissFull Clinic</span>
+          <span class="text-2xl font-semibold text-white">Blissful Kids Clinic</span>
         </div>
 
         <!-- Desktop Navigation -->
@@ -83,34 +112,28 @@
   </nav>
 
   <!-- HOME SECTION -->
-  <section id="home" class="flex items-center px-6">
+  <section id="home" class="flex items-center px-6 relative z-10">
     <div class="max-w-7xl mx-auto w-full">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <!-- Left: Clinic Name and Motive -->
         <div class="space-y-6">
-          <h1 class="text-5xl md:text-6xl font-bold text-white">
-            BlissFull Children's Clinic
+          <h1 class="text-5xl md:text-6xl font-bold text-sky-400">
+            Blissful Kids Clinic
           </h1>
-          <p class="text-xl md:text-2xl text-cyan-300 font-semibold">
-            Caring for Your Little Ones with Love & Expertise
+          <p class="text-xl md:text-2xl text-emerald-300 font-semibold">
+            Because every child deserves Blissful health.
           </p>
-          <p class="text-gray-100 text-lg leading-relaxed">
-            At BlissFull Children's Clinic, we believe every child deserves the best healthcare. Our dedicated team of pediatric specialists is committed to providing compassionate, comprehensive care for children of all ages.
+          <p class="text-gray-100 text-lg leading-relaxed text-slate-100 text-justify">
+            Welcome to Blissful Kids Clinic, where your child's health, development, and well-being are our highest priority. Led by Dr. Sagar S, MD Paediatrics, we offer expert, evidence-based care in a nurturing environment designed to make both children and parents feel comfortable and supported.<br><br> Our clinic is dedicated to providing comprehensive pediatric care for children from infancy through adolescence, ensuring that every child receives the best possible start in life. We offer routine health check-ups, immunizations, and treatment for common and chronic illnesses. Our services also include growth and nutrition guidance and parenting support
           </p>
-          <div class="flex flex-wrap gap-4 pt-4">
-            <a href="#about" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-              Meet Our Doctors
-            </a>
-            <a href="#contact" class="border border-blue-400 text-blue-300 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-              Book Appointment
-            </a>
-          </div>
         </div>
 
         <!-- Right: Logo/Image -->
         <div class="flex justify-center">
-          <div class="w-80 h-80 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl">
-            <svg class="w-48 h-48 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-80 h-80 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden border-4 border-white">
+            <img src="logo.jpg" alt="Blissful Kids Clinic Logo" class="w-full h-full object-cover"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <svg class="w-48 h-48 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
             </svg>
           </div>
@@ -120,57 +143,29 @@
   </section>
 
   <!-- ABOUT SECTION -->
-  <section id="about" class="px-6 py-20">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Meet Our Doctors</h2>
-        <p class="text-xl text-gray-100">Expert pediatric care from our dedicated medical team</p>
+  <section id="about" class="px-6 py-20 relative z-10">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <!-- Left: Doctor image -->
+      <div class="flex justify-center">
+        <img src="profile.jpg" alt="Dr. Sagar S"
+          class="rounded-2xl shadow-2xl w-80 h-96 object-cover border-4 border-blue-400">
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Doctor 1 -->
-        <a href="#contact">
-          <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-700 transition-colors border border-slate-600">
-            <div class="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-white text-center mb-2">Dr. Sarah Johnson</h3>
-            <p class="text-cyan-300 text-center mb-3 font-semibold">Chief Pediatrician</p>
-            <p class="text-gray-100 text-center">15+ years of experience in pediatric care. Specializes in child development and preventive healthcare.</p>
-          </div>
-        </a>
-
-        <!-- Doctor 2 -->
-        <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-700 transition-colors border border-slate-600">
-          <div class="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-semibold text-white text-center mb-2">Dr. Michael Chen</h3>
-          <p class="text-purple-300 text-center mb-3 font-semibold">Pediatric Specialist</p>
-          <p class="text-gray-100 text-center">Expert in treating childhood illnesses and infectious diseases. Committed to family-centered care.</p>
-        </div>
-
-        <!-- Doctor 3 -->
-        <div class="bg-slate-800 rounded-xl p-6 hover:bg-slate-700 transition-colors border border-slate-600">
-          <div class="w-24 h-24 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-semibold text-white text-center mb-2">Dr. Priya Sharma</h3>
-          <p class="text-pink-300 text-center mb-3 font-semibold">Neonatal Specialist</p>
-          <p class="text-gray-100 text-center">Specialized in newborn care and infant health. Passionate about early childhood wellness.</p>
-        </div>
+      <!-- Right: About Doctor -->
+      <div class="text-white space-y-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-cyan-300">Meet Our Doctor</h2>
+        <h3 class="text-2xl font-semibold text-pink-300">Dr. Sagar S, MD Paediatrics</h3>
+        <p class="text-lg text-gray-200 leading-relaxed text-justify">
+          Dr. Sagar S is a dedicated pediatrician committed to nurturing children's health and development.
+          With years of experience and compassion, he provides comprehensive, evidence-based care for infants,
+          children, and adolescents in a comforting environment that prioritizes families' needs.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- SERVICES SECTION -->
-  <section id="Services" class="px-6 py-20 bg-slate-900 text-white">
+  <section id="Services" class="px-6 py-20 text-white relative z-10">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-bold mb-4 text-cyan-300">Our Services</h2>
@@ -179,35 +174,31 @@
 
       <div id="serviceCards" class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all">
         <!-- Card 1 -->
-        <div class="service-card bg-slate-800 rounded-2xl p-6 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
+        <div class="service-card bg-slate-800 rounded-2xl p-8 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
           data-title="Newborn & Infant Care"
           data-description="Comprehensive care for newborns and infants including feeding guidance, sleep routines, and early health monitoring. Our neonatal experts ensure the best start for your baby.">
-          <img src="https://cdn-icons-png.flaticon.com/512/2966/2966481.png" class="w-24 h-24 mx-auto mb-4" alt="">
-          <h3 class="text-2xl font-semibold mb-2 text-pink-300">Newborn & Infant Care</h3>
+          <h3 class="text-2xl font-semibold text-pink-300">Newborn & Infant Care</h3>
         </div>
 
         <!-- Card 2 -->
-        <div class="service-card bg-slate-800 rounded-2xl p-6 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
+        <div class="service-card bg-slate-800 rounded-2xl p-8 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
           data-title="Vaccination & Immunization"
           data-description="Timely and safe immunizations to protect your child from serious diseases. We follow the latest national and international vaccination schedules.">
-          <img src="https://cdn-icons-png.flaticon.com/512/2966/2966403.png" class="w-24 h-24 mx-auto mb-4" alt="">
-          <h3 class="text-2xl font-semibold mb-2 text-blue-300">Vaccination & Immunization</h3>
+          <h3 class="text-2xl font-semibold text-blue-300">Vaccination & Immunization</h3>
         </div>
 
         <!-- Card 3 -->
-        <div class="service-card bg-slate-800 rounded-2xl p-6 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
+        <div class="service-card bg-slate-800 rounded-2xl p-8 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
           data-title="Growth & Development Monitoring"
           data-description="Regular monitoring of physical, cognitive, and emotional development milestones to ensure your child's healthy growth and wellbeing.">
-          <img src="https://cdn-icons-png.flaticon.com/512/2966/2966420.png" class="w-24 h-24 mx-auto mb-4" alt="">
-          <h3 class="text-2xl font-semibold mb-2 text-purple-300">Growth & Development Monitoring</h3>
+          <h3 class="text-2xl font-semibold text-purple-300">Growth & Development Monitoring</h3>
         </div>
 
         <!-- Card 4 -->
-        <div class="service-card bg-slate-800 rounded-2xl p-6 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
+        <div class="service-card bg-slate-800 rounded-2xl p-8 text-center border border-slate-600 cursor-pointer hover:scale-105 transition-transform duration-300"
           data-title="Treatment of Common Childhood Illnesses"
           data-description="Expert care for common illnesses like cold, fever, infections, and allergies. We provide accurate diagnosis and gentle, effective treatments.">
-          <img src="https://cdn-icons-png.flaticon.com/512/2966/2966442.png" class="w-24 h-24 mx-auto mb-4" alt="">
-          <h3 class="text-2xl font-semibold mb-2 text-green-300">Childhood Illness Treatment</h3>
+          <h3 class="text-2xl font-semibold text-green-300">Childhood Illness Treatment</h3>
         </div>
       </div>
 
@@ -221,7 +212,7 @@
   </section>
 
   <!-- CONTACT SECTION -->
-  <section id="contact" class="px-6 py-20">
+  <section id="contact" class="px-6 py-20 relative z-10">
     <div class="max-w-7xl mx-auto">
       <div class="text-center mb-16">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Visit Us</h2>
@@ -241,7 +232,7 @@
               </div>
               <div>
                 <h3 class="text-xl font-semibold text-white mb-2">Address</h3>
-                <p class="text-gray-100">123 Healthcare Avenue<br>Medical District, Bengaluru<br>Karnataka 560001, India</p>
+                <p class="text-gray-100">2397/19, Shop B, SMP Arcade,Ground Floor, 18th Main Rd, 2nd Stage, Kumaraswamy Layout,<br> Bengaluru, Karnataka 560078</p>
               </div>
             </div>
           </div>
@@ -255,7 +246,7 @@
               </div>
               <div>
                 <h3 class="text-xl font-semibold text-white mb-2">Phone</h3>
-                <p class="text-gray-100">+91 80 1234 5678<br>+91 98765 43210</p>
+                <p class="text-gray-100">+91 79756 68632<br></p>
               </div>
             </div>
           </div>
@@ -269,35 +260,31 @@
               </div>
               <div>
                 <h3 class="text-xl font-semibold text-white mb-2">Hours</h3>
-                <p class="text-gray-100">Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 2:00 PM<br>Emergency: 24/7</p>
+                <p class="text-gray-100">Monday - Saturday :<br> 6:00 PM - 9:30 PM<br><br>Sunday : Unavailable</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Map Placeholder -->
+        <!-- Map -->
         <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-600">
-          <div class="h-full min-h-[400px] flex items-center justify-center bg-gradient-to-br from-slate-700 to-slate-800">
-            <div class="text-center">
-              <svg class="w-24 h-24 text-slate-500 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
-              </svg>
-              <p class="text-gray-200 text-lg">Map Location</p>
-              <p class="text-gray-300 text-sm mt-2">123 Healthcare Avenue, Bengaluru</p>
-            </div>
-          </div>
+          <iframe
+            src="https://www.google.com/maps?q=Blissful+Kids+Clinic,+2397/19,+Shop+B,+SMP+Arcade,+Ground+Floor,+18th+Main+Rd,+2nd+Stage,+Kumaraswamy+Layout,+Bengaluru,+Karnataka+560078&output=embed"
+            width="100%" height="600" style="border:0;" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-slate-950 border-t border-slate-800 py-8 px-6">
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 px-6 relative z-10">
     <div class="max-w-7xl mx-auto text-center text-gray-200">
-      <p>&copy; 2025 BlissFull Children's Clinic. All rights reserved.</p>
+      <p>&copy; 2025 Blissful Kids Clinic. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script>
     // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
@@ -340,7 +327,7 @@
     });
   </script>
 
-  <!-- Scripts for service section -->
+  <!-- Service cards expansion script -->
   <script>
     const cards = document.querySelectorAll(".service-card");
     const expandedCard = document.getElementById("expandedCard");
@@ -382,6 +369,83 @@
       animation: fadeIn 0.5s ease-out;
     }
   </style>
+
+  <!-- Navbar hide/show on scroll -->
+  <script>
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('nav');
+
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop) {
+        navbar.style.top = '-80px';
+      } else {
+        navbar.style.top = '0';
+      }
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    });
+  </script>
+
+  <style>
+    nav {
+      transition: top 0.4s ease;
+    }
+  </style>
+
+  <!-- Parallax background transition -->
+  <script>
+    const layers = [
+      document.getElementById('bg1'),
+      document.getElementById('bg2'),
+      document.getElementById('bg3'),
+      document.getElementById('bg4')
+    ];
+
+    const sectionsForBg = [
+      document.getElementById('home'),
+      document.getElementById('about'),
+      document.getElementById('Services'),
+      document.getElementById('contact')
+    ];
+
+    function updateBackground() {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const scrollMid = scrollY + windowHeight / 2;
+
+      sectionsForBg.forEach((section, i) => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollMid >= sectionTop && scrollMid < sectionBottom) {
+          layers.forEach((layer, j) => {
+            if (i === j) {
+              layer.classList.add('active');
+            } else {
+              layer.classList.remove('active');
+            }
+          });
+
+          const parallaxSpeed = 0.5;
+          const offsetY = (scrollY - sectionTop) * parallaxSpeed;
+          layers[i].style.transform = `translate3d(0, ${offsetY}px, 0)`;
+        }
+      });
+    }
+
+    updateBackground();
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateBackground();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
 
 </body>
 </html>
